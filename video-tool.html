@@ -127,6 +127,25 @@
             box-shadow: 0 6px 16px rgba(76, 201, 240, 0.5);
         }
         
+        .progress-container {
+            width: 100%;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            margin: 20px 0;
+            display: none;
+        }
+        
+        .progress-bar {
+            width: 0%;
+            height: 30px;
+            background-color: var(--accent);
+            border-radius: 5px;
+            text-align: center;
+            line-height: 30px;
+            color: white;
+            transition: width 0.5s;
+        }
+        
         .ad-container {
             margin: 40px 0;
             text-align: center;
@@ -178,6 +197,23 @@
             color: var(--accent);
         }
         
+        .status-message {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2rem;
@@ -193,17 +229,17 @@
     <header>
         <div class="container header-content">
             <div class="logo">
-                HD Video Converter <span>Enhance your videos to stunning HD quality</span>
+                HD Video Converter <span>अपने वीडियो को HD क्वालिटी में बदलें</span>
             </div>
-            <div class="creator">By Kundan Sharma</div>
+            <div class="creator">कुंदन शर्मा द्वारा</div>
         </div>
     </header>
     
     <main>
         <div class="container">
             <section class="hero">
-                <h1>Convert Videos to HD Quality</h1>
-                <p>Upload your standard quality videos and get them enhanced to crystal clear HD resolution in just a few clicks.</p>
+                <h1>वीडियो को HD क्वालिटी में कन्वर्ट करें</h1>
+                <p>अपने साधारण क्वालिटी के वीडियो अपलोड करें और उन्हें क्रिस्टल क्लियर HD रेजोल्यूशन में पाएं</p>
             </section>
             
             <div class="ad-container">
@@ -220,23 +256,25 @@
             </div>
             
             <section class="upload-container">
-                <h2>Upload Your Video</h2>
-                <p>Supported formats: MP4, MOV, AVI, MKV, WMV (Max 5GB)</p>
+                <h2>अपना वीडियो अपलोड करें</h2>
+                <p>सपोर्टेड फॉर्मेट: MP4, MOV, AVI, MKV, WMV (अधिकतम 5GB)</p>
                 
                 <input type="file" id="video-upload" accept="video/*" style="display: none;">
                 <button class="upload-btn" onclick="document.getElementById('video-upload').click()">
-                    Upload Video
+                    वीडियो अपलोड करें
                 </button>
                 
-                <div class="progress-bar" style="display: none;">
-                    <!-- Progress bar would go here -->
+                <div class="progress-container" id="progress-container">
+                    <div class="progress-bar" id="progress-bar">0%</div>
                 </div>
                 
+                <div class="status-message" id="status-message"></div>
+                
                 <div class="download-options" id="download-options">
-                    <h3>Your HD Video is Ready!</h3>
-                    <p>Choose your preferred download size:</p>
-                    <button class="download-btn">Download in 1GB</button>
-                    <button class="download-btn">Download in 2GB</button>
+                    <h3>आपका HD वीडियो तैयार है!</h3>
+                    <p>अपना पसंदीदा डाउनलोड साइज चुनें:</p>
+                    <button class="download-btn" onclick="downloadVideo('1GB')">1GB में डाउनलोड करें</button>
+                    <button class="download-btn" onclick="downloadVideo('2GB')">2GB में डाउनलोड करें</button>
                 </div>
             </section>
             
@@ -255,16 +293,16 @@
             
             <section class="features">
                 <div class="feature-card">
-                    <h3>High Quality Conversion</h3>
-                    <p>Our advanced algorithms enhance your videos to true HD quality with improved clarity and detail.</p>
+                    <h3>उच्च गुणवत्ता रूपांतरण</h3>
+                    <p>हमारे उन्नत एल्गोरिदम आपके वीडियो को बेहतर स्पष्टता और विवरण के साथ HD क्वालिटी में बढ़ाते हैं।</p>
                 </div>
                 <div class="feature-card">
-                    <h3>Fast Processing</h3>
-                    <p>Get your HD videos in minutes, not hours. Our servers work quickly to process your uploads.</p>
+                    <h3>तेज प्रोसेसिंग</h3>
+                    <p>घंटों में नहीं, मिनटों में अपने HD वीडियो प्राप्त करें। हमारे सर्वर आपके अपलोड को जल्दी से प्रोसेस करते हैं।</p>
                 </div>
                 <div class="feature-card">
-                    <h3>Secure Service</h3>
-                    <p>Your videos are processed securely and deleted from our servers after 24 hours.</p>
+                    <h3>सुरक्षित सेवा</h3>
+                    <p>आपके वीडियो सुरक्षित रूप से प्रोसेस किए जाते हैं और 24 घंटे के बाद हमारे सर्वर से हटा दिए जाते हैं।</p>
                 </div>
             </section>
         </div>
@@ -273,25 +311,91 @@
     <footer>
         <div class="container footer-content">
             <div>© 2023 HD Video Converter</div>
-            <div class="creator">Created by Kundan Sharma</div>
+            <div class="creator">कुंदन शर्मा द्वारा निर्मित</div>
             <div>
-                <a href="#" style="color: white; margin: 0 10px;">Terms</a>
-                <a href="#" style="color: white; margin: 0 10px;">Privacy</a>
-                <a href="#" style="color: white; margin: 0 10px;">Contact</a>
+                <a href="#" style="color: white; margin: 0 10px;">नियम</a>
+                <a href="#" style="color: white; margin: 0 10px;">गोपनीयता</a>
+                <a href="#" style="color: white; margin: 0 10px;">संपर्क</a>
             </div>
         </div>
     </footer>
     
     <script>
-        // This would handle the file upload and conversion process in a real implementation
+        // This handles the file upload and conversion process
         document.getElementById('video-upload').addEventListener('change', function(e) {
             if (e.target.files.length > 0) {
+                const file = e.target.files[0];
+                const statusMessage = document.getElementById('status-message');
+                const progressContainer = document.getElementById('progress-container');
+                const progressBar = document.getElementById('progress-bar');
+                
+                // Reset previous messages
+                statusMessage.style.display = 'none';
+                statusMessage.className = 'status-message';
+                
+                // Check file size (max 5GB)
+                if (file.size > 5 * 1024 * 1024 * 1024) {
+                    statusMessage.textContent = 'त्रुटि: फाइल साइज बहुत बड़ी है (अधिकतम 5GB)';
+                    statusMessage.className = 'status-message error';
+                    statusMessage.style.display = 'block';
+                    return;
+                }
+                
+                // Check file type
+                const validTypes = ['video/mp4', 'video/quicktime', 'video/x-msvideo', 'video/x-matroska', 'video/x-ms-wmv'];
+                if (!validTypes.includes(file.type)) {
+                    statusMessage.textContent = 'त्रुटि: असमर्थित फाइल प्रकार। कृपया MP4, MOV, AVI, MKV, या WMV फाइल अपलोड करें।';
+                    statusMessage.className = 'status-message error';
+                    statusMessage.style.display = 'block';
+                    return;
+                }
+                
+                // Show progress bar
+                progressContainer.style.display = 'block';
+                
                 // Simulate upload and conversion process
-                setTimeout(function() {
-                    document.getElementById('download-options').style.display = 'block';
-                }, 3000);
+                let progress = 0;
+                const interval = setInterval(function() {
+                    progress += 5;
+                    progressBar.style.width = progress + '%';
+                    progressBar.textContent = progress + '%';
+                    
+                    if (progress >= 100) {
+                        clearInterval(interval);
+                        setTimeout(function() {
+                            document.getElementById('download-options').style.display = 'block';
+                            statusMessage.textContent = 'सफलता: आपका वीडियो HD क्वालिटी में कन्वर्ट हो गया है!';
+                            statusMessage.className = 'status-message success';
+                            statusMessage.style.display = 'block';
+                        }, 500);
+                    }
+                }, 200);
             }
         });
+        
+        function downloadVideo(size) {
+            const statusMessage = document.getElementById('status-message');
+            statusMessage.textContent = 'डाउनलोड शुरू हो रहा है (' + size + ')...';
+            statusMessage.className = 'status-message success';
+            statusMessage.style.display = 'block';
+            
+            // In a real implementation, this would trigger the actual download
+            // For demo purposes, we'll simulate a download
+            setTimeout(function() {
+                // Create a dummy file for download demonstration
+                const blob = new Blob(["This is a simulated HD video file (" + size + " version)"], {type: 'video/mp4'});
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'hd_video_' + size.toLowerCase() + '.mp4';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                statusMessage.textContent = 'डाउनलोड पूरा हुआ (' + size + ')!';
+            }, 1500);
+        }
     </script>
 </body>
 </html>
