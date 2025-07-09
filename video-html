@@ -7,39 +7,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
     <style>
-        :root {
-            --primary: #6c5ce7;
-            --secondary: #5649d6;
-            --accent: #00cec9;
-            --light: #f8f9fa;
-            --dark: #2d3436;
-            --success: #00b894;
-            --warning: #fdcb6e;
-            --danger: #d63031;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f5f6fa;
-            color: var(--dark);
-            line-height: 1.6;
-        }
-        
-        /* Header Styles */
-        header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 1rem 0;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+       your-repo/
+├── docs/
+│   ├── _config.yml
+│   ├── assets/
+│   │   └── css/
+│   │       └── style.scss
+│   └── index.md
         }
         
         .container {
