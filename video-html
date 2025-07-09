@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HD Video Converter Pro | Kundan Sharma</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #5649d6;
+            --accent: #00cec9;
+            --light: #f8f9fa;
+            --dark: #2d3436;
+            --success: #00b894;
+            --warning: #fdcb6e;
+            --danger: #d63031;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f6fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .logo span {
+            font-size: 1rem;
+            display: block;
+            font-weight: 400;
+            opacity: 0.8;
+        }
+        
+        .creator-badge {
+            background-color: rgba(255,255,255,0.2);
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .creator-badge i {
+            margin-right: 8px;
+        }
+        
+        /* Main Content Styles */
+        main {
+            padding: 3rem 0;
+        }
+        
+        .hero {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: #636e72;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        /* Video Converter Tool Styles */
+        .converter-tool {
+            background: white;
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tool-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .tool-header h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .tool-header p {
+            color: #636e72;
+        }
+        
+        .upload-area {
+            border: 2px dashed #b2bec3;
+            border-radius: 10px;
+            padding: 3rem 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .upload-area:hover {
+            border-color: var(--primary);
+            background-color: rgba(108, 92, 231, 0.05);
+        }
+        
+        .upload-area i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .upload-area h3 {
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .upload-area p {
+            color: #636e72;
+            margin-bottom: 1rem;
+        }
+        
+        .upload-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.4);
+        }
+        
+        .upload-btn i {
+            margin-right: 8px;
+        }
+        
+        .upload-btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(108, 92, 231, 0.5);
+        }
+        
+        input[type="file"] {
+            display: none;
+        }
+        
+        /* Video Preview Section */
+        .video-preview {
+            display: none;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .video-preview h3 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        #video-player {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 1rem;
+        }
+        
+        /* Progress Section */
+        .progress-section {
+            display: none;
+            margin: 2rem 0;
+        }
+        
+        .progress-container {
+            width: 100%;
+            background-color: #dfe6e9;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            width: 0%;
+            height: 15px;
+            background: linear-gradient(to right, var(--accent), var(--primary));
+            border-radius: 10px;
+            transition: width 0.5s;
+        }
+        
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #636e72;
+        }
+        
+        /* Download Options */
+        .download-options {
+            display: none;
+            margin-top: 2rem;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .download-options h3 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .download-options p {
+            color: #636e72;
+            margin-bottom: 1.5rem;
+        }
+        
+        .download-btn {
+            background-color: var(--success);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 184, 148, 0.4);
+        }
+        
+        .download-btn i {
+            margin-right: 8px;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 184, 148, 0.5);
+        }
+        
+        .btn-1gb {
+            background-color: var(--accent);
+            box-shadow: 0 4px 15px rgba(0, 206, 201, 0.4);
+        }
+        
+        .btn-1gb:hover {
+            box-shadow: 0 6px 20px rgba(0, 206, 201, 0.5);
+        }
+        
+        /* Status Messages */
+        .status-message {
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            display: none;
+            text-align: center;
+        }
+        
+        .success {
+            background-color: rgba(0, 184, 148, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(0, 184, 148, 0.3);
+        }
+        
+        .error {
+            background-color: rgba(214, 48, 49, 0.1);
+            color: var(--danger);
+            border: 1px solid rgba(214, 48, 49, 0.3);
+        }
+        
+        /* Features Section */
+        .features-section {
+            margin: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+        
+        .section-title p {
+            color: #636e72;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 1.8rem;
+        }
+        
+        .feature-card h3 {
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card p {
+            color: #636e72;
+        }
+        
+        /* Ad Container */
+        .ad-container {
+            margin: 3rem 0;
+            text-align: center;
+            background: #f0f2f5;
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+        
+        /* Footer Styles */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--accent);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul li a {
+            color: #b2bec3;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #b2bec3;
+            font-size: 0.9rem;
+        }
+        
+        .creator-name {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .converter-tool {
+                padding: 1.5rem;
+            }
+            
+            .upload-area {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-video"></i>
+                <div>
+                    HD Video Pro
+                    <span>Convert to HD quality in seconds</span>
+                </div>
+            </div>
+            <div class="creator-badge">
+                <i class="fas fa-code"></i>
+                By Kundan Sharma
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <div class="container">
+            <section class="hero">
+                <h1>Convert Your Videos to Stunning HD Quality</h1>
+                <p>Enhance your videos with our advanced HD conversion technology. Perfect for content creators, social media, and personal memories.</p>
+            </section>
+            
+            <div class="ad-container">
+                <!-- Google AdSense Banner -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                     data-ad-slot="XXXXXXXXXX"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+            
+            <section class="converter-tool">
+                <div class="tool-header">
+                    <h2>HD Video Converter</h2>
+                    <p>Upload your video and convert it to HD quality in minutes</p>
+                </div>
+                
+                <div class="upload-area" id="upload-area">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <h3>Drag & Drop Your Video Here</h3>
+                    <p>or click to browse files</p>
+                    <p class="small">Supports: MP4, MOV, AVI, MKV, WMV (Max 5GB)</p>
+                    <button class="upload-btn" id="upload-btn">
+                        <i class="fas fa-upload"></i> Select Video
+                    </button>
+                    <input type="file" id="video-upload" accept="video/*">
+                </div>
+                
+                <div class="status-message" id="status-message"></div>
+                
+                <div class="video-preview" id="video-preview">
+                    <h3>Your Video Preview</h3>
+                    <video controls id="video-player" width="100%"></video>
+                </div>
+                
+                <div class="progress-section" id="progress-section">
+                    <div class="progress-container">
+                        <div class="progress-bar" id="progress-bar"></div>
+                    </div>
+                    <div class="progress-text">
+                        <span>Converting to HD...</span>
+                        <span id="progress-percent">0%</span>
+                    </div>
+                </div>
+                
+                <div class="download-options" id="download-options">
+                    <h3>Your HD Video Is Ready!</h3>
+                    <p>Choose your preferred download option:</p>
+                    <button class="download-btn btn-1gb" onclick="downloadVideo('1GB')">
+                        <i class="fas fa-download"></i> Download 1GB Version
+                    </button>
+                    <button class="download-btn" onclick="downloadVideo('2GB')">
+                        <i class="fas fa-download"></i> Download 2GB Version
+                    </button>
+                </div>
+            </section>
+            
+            <div class="ad-container">
+                <!-- Google AdSense Banner -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                     data-ad-slot="XXXXXXXXXX"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+            
+            <section class="features-section">
+                <div class="section-title">
+                    <h2>Why Choose Our Video Converter</h2>
+                    <p>Experience the best video conversion with our powerful features</p>
+                </div>
+                
+                <div class="features">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <h3>Fast Processing</h3>
+                        <p>Our servers convert videos at lightning speed without compromising quality.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-film"></i>
+                        </div>
+                        <h3>HD Quality</h3>
+                        <p>Enhance your videos to true 1080p or 4K HD resolution with advanced algorithms.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Secure & Private</h3>
+                        <p>Your videos are processed securely and automatically deleted after 24 hours.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>HD Video Pro</h3>
+                    <p>The easiest way to convert your videos to HD quality online. No software installation required.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">How It Works</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Report a Problem</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> support@hdvideopro.com</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Video Street, Digital City</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 HD Video Pro. All Rights Reserved. | Developed by <span class="creator-name">Kundan Sharma</span></p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // DOM Elements
+        const uploadArea = document.getElementById('upload-area');
+        const uploadBtn = document.getElementById('upload-btn');
+        const videoUpload = document.getElementById('video-upload');
+        const videoPreview = document.getElementById('video-preview');
+        const videoPlayer = document.getElementById('video-player');
+        const progressSection = document.getElementById('progress-section');
+        const progressBar = document.getElementById('progress-bar');
+        const progressPercent = document.getElementById('progress-percent');
+        const downloadOptions = document.getElementById('download-options');
+        const statusMessage = document.getElementById('status-message');
+        
+        // Event Listeners
+        uploadArea.addEventListener('click', () => videoUpload.click());
+        uploadBtn.addEventListener('click', () => videoUpload.click());
+        
+        videoUpload.addEventListener('change', handleFileUpload);
+        uploadArea.addEventListener('dragover', handleDragOver);
+        uploadArea.addEventListener('drop', handleDrop);
+        
+        // Functions
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            uploadArea.style.borderColor = 'var(--primary)';
+            uploadArea.style.backgroundColor = 'rgba(108, 92, 231, 0.1)';
+        }
+        
+        function handleDrop(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            uploadArea.style.borderColor = '#b2bec3';
+            uploadArea.style.backgroundColor = 'transparent';
+            
+            if (e.dataTransfer.files.length) {
+                videoUpload.files = e.dataTransfer.files;
+                handleFileUpload();
+            }
+        }
+        
+        function handleFileUpload() {
+            if (videoUpload.files.length > 0) {
+                const file = videoUpload.files[0];
+                
+                // Reset previous state
+                statusMessage.style.display = 'none';
+                statusMessage.className = 'status-message';
+                downloadOptions.style.display = 'none';
+                
+                // Check file size (max 5GB)
+                if (file.size > 5 * 1024 * 1024 * 1024) {
+                    showStatusMessage('Error: File size too large (maximum 5GB allowed)', 'error');
+                    return;
+                }
+                
+                // Check file type
+                const validTypes = ['video/mp4', 'video/quicktime', 'video/x-msvideo', 'video/x-matroska', 'video/x-ms-wmv'];
+                if (!validTypes.includes(file.type)) {
+                    showStatusMessage('Error: Unsupported file type. Please upload MP4, MOV, AVI, MKV, or WMV files.', 'error');
+                    return;
+                }
+                
+                // Show video preview
+                const videoURL = URL.createObjectURL(file);
+                videoPlayer.src = videoURL;
+                videoPreview.style.display = 'block';
+                
+                // Start conversion process
+                startConversionProcess();
+            }
+        }
+        
+        function startConversionProcess() {
+            progressSection.style.display = 'block';
+            
+            // Simulate conversion progress
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 2;
+                if (progress > 100) progress = 100;
+                
+                progressBar.style.width = progress + '%';
+                progressPercent.textContent = progress + '%';
+                
+                if (progress === 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        progressSection.style.display = 'none';
+                        downloadOptions.style.display = 'block';
+                        showStatusMessage('Success: Your video has been converted to HD quality!', 'success');
+                    }, 500);
+                }
+            }, 100);
+        }
+        
+        function downloadVideo(size) {
+            showStatusMessage(`Starting download (${size} version)...`, 'success');
+            
+            // In a real implementation, this would trigger the actual download from server
+            // For demo purposes, we'll simulate a download
+            setTimeout(() => {
+                const blob = new Blob([`Simulated HD video file (${size} version)`], {type: 'video/mp4'});
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `hd_video_${size.toLowerCase()}.mp4`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                showStatusMessage(`Download complete (${size})!`, 'success');
+            }, 1500);
+        }
+        
+        function showStatusMessage(message, type) {
+            statusMessage.textContent = message;
+            statusMessage.className = `status-message ${type}`;
+            statusMessage.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
